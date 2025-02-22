@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedTracker | Your personal medicine notifier</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/icon.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    
+    <div class="background">
+
+        <div class="content">
+            <section class="top-bar">
+                <nav class="nav-bar">
+                    <ul class="nav-list">
+                        <li><a href="#price">Price</a></li>
+                        <li><a href="#faq">FAQs</a></li>
+                        <li><a href="{{ url_for('auth.feedback') }}">Feedback</a></li>
+                    </ul>
+                </nav>
+                <div class="login-signup">
+                    <form action="/signup" method="get"><button>Sign Up</button></form>
+                    <form action="/login" method="get"><button>Log In</button></form>
+                </div>
+            </section>
+            <!-- Display flash messages -->
+        
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category,message in messages %}
+                    {% if category == 'error' %}
+                    <div class="flash-message">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+                        {% else %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <section class="hero-section">
+                <img src="{{ url_for('static', filename='img/icon.png') }}" alt="Track It logo" style="width: 150px; height: 150px;">
+                <h1><span>track It</span></h1>
+                <p>A hassle free way of tracking prices</p>
+            </section>
+            
+        </div>
+    </div>
+    <div class="problem-section">
+        <h2>Tired of manually tracking flight price?</h2>
+        <p>
+            Tracking flight prices can be a hassle, with fluctuating costs and confusing interfaces. 
+            Our platform simplifies the process, providing real-time price tracking, notifications, 
+            and easy-to-use features to ensure you never miss the best deals.
+        </p>
+        <div class="comparison-section">
+            <div class="comparison-card without">
+                <h3>Booking without Track It</h3>
+                <ul>
+                    <li>❌ Manually track flight prices</li>
+                    <li>❌ Miss out on the best deals</li>
+                    <li>❌ Spend hours searching different websites</li>
+                    <li>❌ No notifications for price drops</li>
+                    <li>❌ Risk booking at higher prices</li>
+                </ul>
+            </div>
+            <div class="comparison-card with">
+                <h3>Booking with Track It</h3>
+                <ul>
+                    <li>✅ Automatic flight price tracking</li>
+                    <li>✅ Get the best deals in real time</li>
+                    <li>✅ Save time with a single platform</li>
+                    <li>✅ Email notifications for price updates</li>
+                    <li>✅ Never overpay for flights again</li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="background">
+        <h2>Why choose Us?</h2>
+        <div class="info-section">
+            
+            <div class="info-item">
+                <div class="toggle-header">
+                    <label for="specific-flight">1. Track Specific Flight</label>
+                    <button class="toggle-button" name="specific-flight" value="specific-flight" onclick="toggleSection(this)">+</button>
+                </div>
+                
+                <div class="info-content" id="specific-flight">
+                    <p>Stay updated on the status of any specific flight. Enter the flight number to get real-time updates, including delays, gate changes, and arrival times.</p>
+                </div>
+            </div>
+            <hr>
+            <div class="info-item">
+                <div class="toggle-header">
+                    <label for="cheapest-flight">2. Track Cheapest Flight</label>
+                    <button class="toggle-button" name="cheapest-flight" value="cheapest-flight" onclick="toggleSection(this)">+</button>
+                </div>
+                
+                <div class="info-content" id="cheapest-flight">
+                    <p>Find the most affordable flights to your destination. Use advanced filters to compare prices and get suggestions for the best time to book.</p>
+                </div>
+            </div>
+            <hr>
+            <div class="info-item">
+                <div class="toggle-header">
+                    <label for="notifier">3. Get Mail Notifications</label>
+                    <button class="toggle-button" name="notifier" value="notifier" onclick="toggleSection(this)">+</button>
+                </div>
+                
+                <div class="info-content" id="notifier">
+                    <p>Never miss an update! Subscribe to email alerts for flight price drops, booking confirmations, or changes to your selected flights.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <section class="price" id="price">
+        <img src="{{ url_for('static', filename='img/banner-plane-left.png') }}" class="plane left-to-right-banner" alt="Banner Plane 1">
+        <img src="{{ url_for('static', filename='img/banner-plane-right.png') }}" class="plane right-to-left-banner" alt="Banner Plane 2">
+        <div class="price-content">
+            <h2>We expect you to</h2>
+            <h2>🌟Pay nothing.🌟</h2>
+        </div>
+    </section>
+
+
+
+
+    <section class="faq" id="faq">
+        <div class="background">
+            <div class="faq-content">
+                <div class="faq-header">
+                    <h2>Frequently Asked Questions</h2>
+                </div>
+                <div class="faq-questions">
+                    <div class="info-item">
+                        <div class="toggle-header">
+                            <label for="about">What is this site about?</label>
+                            <button class="toggle-button" name="about" value="about" onclick="toggleSection(this)">+</button>
+                        </div>
+                        
+                        <div class="info-content" id="about">
+                            <p>This site helps you track flight prices and sends notifications about price drops.</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="info-item">
+                        <div class="toggle-header">
+                            <label for="work">How does the price tracking work?</label>
+                            <button class="toggle-button" name="work" value="work" onclick="toggleSection(this)">+</button>
+                        </div>
+                        
+                        <div class="info-content" id="work">
+                            <p>You enter your desired route and travel dates, and we monitor the prices for you.</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="info-item">
+                        <div class="toggle-header">
+                            <label for="is-it-free">Is this service free?</label>
+                            <button class="toggle-button" name="is-it-free" value="is-it-free" onclick="toggleSection(this)">+</button>
+                        </div>
+                        
+                        <div class="info-content" id="is-it-free">
+                            <p>Yes.</p>
+                        </div>
+                    </div>
+                    <hr> 
+                    <div class="info-item">
+                        <div class="toggle-header">
+                            <label for="how-often">How often are flight prices updated?</label>
+                            <button class="toggle-button" name="how-often" value="how-often" onclick="toggleSection(this)">+</button>
+                        </div>
+                        
+                        <div class="info-content" id="how-often">
+                            <p>We update flight prices daily at a fixed time.</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="info-item">
+                        <div class="toggle-header">
+                            <label for="multiple-flights">Can I track multiple flights at once?</label>
+                            <button class="toggle-button" name="multiple-flights" value="multiple-flights" onclick="toggleSection(this)">+</button>
+                        </div>
+                        
+                        <div class="info-content" id="multiple-flights">
+                            <p>Yes, you can track multiple routes simultaneously.</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="info-item">
+                        <div class="toggle-header">
+                            <label for="how-will-i-know">How will I know if the price changes?</label>
+                            <button class="toggle-button" name="how-will-i-know" value="how-will-i-know" onclick="toggleSection(this)">+</button>
+                        </div>
+                        
+                        <div class="info-content" id="how-will-i-know">
+                            <p>You'll receive an email notification whenever there's a significant price change.</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="info-item">
+                        <div class="toggle-header">
+                            <label for="need-account">Do I need to create an account?</label>
+                            <button class="toggle-button" name="need-account" value="need-account" onclick="toggleSection(this)">+</button>
+                        </div>
+                        
+                        <div class="info-content" id="need-account">
+                            <p>Yes, creating an account helps us save your preferences and notify you.</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="info-item">
+                        <div class="toggle-header">
+                            <label for="book-directly">Can I book flights directly on this site?</label>
+                            <button class="toggle-button" name="book-directly" value="book-directly" onclick="toggleSection(this)">+</button>
+                        </div>
+                        
+                        <div class="info-content" id="book-directly">
+                            <p>Not yet. We currently redirect you to trusted booking platforms.</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="info-item">
+                        <div class="toggle-header">
+                            <label for="track-international">Can I track international flights?</label>
+                            <button class="toggle-button" name="track-international" value="track-international" onclick="toggleSection(this)">+</button>
+                        </div>
+                        
+                        <div class="info-content" id="track-international">
+                            <p>Yes, our service supports domestic and international flights.</p>
+                        </div>
+                    </div>
+                    <hr> 
+                    <div class="info-item">
+                        <div class="toggle-header">
+                            <label for="give-feedback">What if I encounter an issue with the site?</label>
+                            <button class="toggle-button" name="give-feedback" value="give-feedback" onclick="toggleSection(this)">+</button>
+                        </div>
+                        
+                        <div class="info-content" id="give-feedback">
+                            <p>Please contact our support team via the Feedback section.</p>
+                        </div>
+                    </div>  
+                                    
+
+                </div>
+            </div>
+        </div>
+        
+    </section>
+    
+    
+    
+    
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        // adding background image
+        const backgroundElmnts = document.querySelectorAll(".background");
+        backgroundElmnts.forEach(bg => {
+            bg.style.backgroundImage = `url("{{ url_for('static', filename='img/sky.png') }}")`;
+
+        });
+
+        function toggleSection(button) {
+            const contents = document.querySelectorAll(".info-content");
+            contents.forEach(content => {
+                if (content.id === button.value){
+                    if (content.style.display === "block") {
+                        content.style.display = "none";
+                        button.textContent = "+"; // Change button text to +
+                    } else {
+                        content.style.display = "block";
+                        button.textContent = "-"; // Change button text to -
+                    };
+                }else{
+                    content.style.display = "none";
+                };
+            });
+            
+        };
+
+    </script>
+</body>
+</html>

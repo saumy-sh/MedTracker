@@ -1,0 +1,297 @@
+/* Resetting margin and padding for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Add box-sizing for better control of element sizing */
+}
+
+/* Background settings */
+.background {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    height: 720px;
+    overflow: hidden;
+    background-color: #00A2E8;
+}
+.background h2{
+    margin-left: 10rem;
+    margin-top: 2rem;
+    font-size: 4rem;
+    font-weight: 900;
+}
+
+/* Content settings */
+.content {
+    position: relative;
+    z-index: 10; /* Ensures text and other content are in front of the background */
+    text-align: center;
+    color: #000000; /* Ensure text is visible against the background */
+}
+.top-bar{
+    margin-bottom: 1rem;
+}
+/* Navigation bar list */
+.nav-list {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem; /* Adjust spacing */
+    
+}
+
+/* Individual navigation items */
+.nav-list li {
+    padding: 0 1rem; /* Horizontal padding */
+    color: #000000;
+}
+
+/* Buttons for login and signup */
+.login-signup {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0.5rem; /* Adds spacing around the buttons */
+}
+
+.login-signup button {
+    margin-right: 1rem; /* Spacing between buttons */
+    padding: 0.5rem 1rem; /* Better button sizing */
+    background-color: #00A2E8; /* Bootstrap primary color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.login-signup button:hover {
+    background-color: #0056b3; /* Darker shade for hover effect */
+}
+
+/* Hero section */
+.hero-section {
+    margin: 3rem auto; /* Centered margin */
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Hero section heading */
+.hero-section h1 {
+    font-weight: 900;
+    font-size: 4rem; /* Responsive size */
+    margin-bottom: 1rem;
+}
+
+/* Hero section paragraph */
+.hero-section p {
+    font-size: 1.5rem;
+    font-weight: 200;
+    margin-top: 1rem;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-section p {
+        font-size: 1.2rem;
+    }
+
+    .login-signup button {
+        font-size: 0.9rem;
+    }
+}
+
+
+
+
+
+/* problem section */
+.problem-section {
+    color: #000000; /* Dark text for readability */
+    padding: 3rem 2rem;
+    text-align: center;
+    margin-top: 3rem;
+    height: 720px;
+}
+
+.problem-section h2 {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+}
+
+.problem-section p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin: 0 auto;
+    max-width: 800px;
+    font-weight: 200;
+}
+
+.comparison-section {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem auto;
+    max-width: 1200px;
+    padding: 0 1rem; /* Add padding for smaller screens */
+}
+
+.comparison-card {
+    flex: 1;
+    padding: 3rem;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.comparison-card.without {
+    background-color: #ffecec; /* Light pink */
+    color: #d9534f; /* Red for "without" */
+
+}
+
+.comparison-card.with {
+    background-color: #e6f9ed; /* Light green */
+    color: #5cb85c; /* Green for "with" */
+
+}
+
+.comparison-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    padding-left: 1.5rem;
+}
+
+.comparison-card.without h3 {
+    color: #d9534f; /* Red for "without" */
+}
+
+.comparison-card.with h3 {
+    color: #5cb85c; /* Green for "with" */
+}
+
+.comparison-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.comparison-card li {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    padding-left: 3rem;
+}
+
+
+/* info section  */
+
+.info-section {
+    width: 60%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    font-weight: 100;
+    padding: 2rem;
+    margin-left: 23rem;
+}
+
+.info-item {
+    border-radius: 8px;
+    margin: 10px 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.toggle-button {
+    border: none;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 10px;
+    appearance: none;
+    color: #bec4c0;
+    background-color: transparent;
+    justify-content: right;
+    width: 30px;
+    height: 30px;
+}
+
+.toggle-button:hover {
+    color: #000000;
+}
+
+.info-content {
+    display: none; /* Initially hidden */
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+}
+.toggle-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 50px;
+    max-width: 380px;
+    font-weight: 300;
+}
+.info-section hr{
+    width: 400px;
+}
+
+
+/* pricing section */
+.price{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 720px;
+    padding: 1rem;
+    overflow: hidden;
+}
+.price-content{
+    position: relative;
+    z-index: 10;
+    margin-top: 3rem;
+}
+.price-content h2{
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+}
+
+
+/* faqs */
+.faq-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.faq-header{
+    display: flex;
+    flex-direction: column;
+}
+.faq-header h2{
+    margin-top: 5rem;
+}
+
+
+.faq-questions{
+    width: 60%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    font-weight: 100;
+    padding: 2rem;
+    margin-right: 3rem;
+}
+
+
+
