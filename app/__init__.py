@@ -140,7 +140,7 @@ def create_app():
         with app.app_context():
             check_medicines()
 
-    scheduler.add_job(id="medicine_check", func=check_medicines_job, trigger="cron", hour=21, minute=21)
+    scheduler.add_job(id="medicine_check", func=check_medicines_job, trigger="cron", hour=21, minute=27)
     scheduler.start()
 
 
