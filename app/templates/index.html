@@ -18,7 +18,6 @@
                     <ul class="nav-list">
                         <li><a href="#price">Price</a></li>
                         <li><a href="#faq">FAQs</a></li>
-                        <li><a href="{{ url_for('auth.feedback') }}">Feedback</a></li>
                     </ul>
                 </nav>
                 <div class="login-signup">
@@ -48,8 +47,8 @@
             {% endif %}
             {% endwith %}
             <section class="hero-section">
-                <img src="{{ url_for('static', filename='img/icon.png') }}" alt="Track It logo" style="width: 150px; height: 150px;">
-                <h1><span>track It</span></h1>
+                <img src="{{ url_for('static', filename='img/icon.png') }}" alt="Track It logo" style="width: 100px; height: 100px;">
+                <h1><span>MedTracker</span></h1>
                 <p>A hassle free way of tracking prices</p>
             </section>
             
@@ -131,8 +130,7 @@
 
 
     <section class="price" id="price">
-        <img src="{{ url_for('static', filename='img/banner-plane-left.png') }}" class="plane left-to-right-banner" alt="Banner Plane 1">
-        <img src="{{ url_for('static', filename='img/banner-plane-right.png') }}" class="plane right-to-left-banner" alt="Banner Plane 2">
+
         <div class="price-content">
             <h2>We expect you to</h2>
             <h2>🌟Pay nothing.🌟</h2>
@@ -273,11 +271,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         // adding background image
-        const backgroundElmnts = document.querySelectorAll(".background");
-        backgroundElmnts.forEach(bg => {
-            bg.style.backgroundImage = `url("{{ url_for('static', filename='img/sky.png') }}")`;
-
-        });
 
         function toggleSection(button) {
             const contents = document.querySelectorAll(".info-content");

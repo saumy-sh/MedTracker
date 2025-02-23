@@ -36,13 +36,15 @@
             
             <div class="login-page">
                 <a href="/" class="logo-container">
-                    <img src="{{ url_for('static', filename='img/icon.png') }}" alt="MedTracker Logo" style="width: 100px; height: 100px;">
+                    <img src="{{ url_for('static', filename='img/med_tracker.png') }}" alt="MedTracker Logo" style="width: 100px; height: 100px;">
                     <h2>MedTracker</h2>
                 </a>
                 <br>
                 <form class="login-info" action="/login" method="post">
                     <input type="email" id="email" name="email" placeholder="Type your gmail here" required>
                     <br>
+                    <input type="password" id="password" name="password" placeholder="Enter password" required>   
+                    <br>                 
                     <button type="submit">Log In</button>
                 </form>
             </div>

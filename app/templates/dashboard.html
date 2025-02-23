@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login | MedTracker</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/icon.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <div class="message-window">
+        <div class="position-absolute top-0 end-0 m-3">
+            <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                {% if category == 'error' %}
+                <div class="flash-message">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% else %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    {% if session["role"] == "doctor" %}
+        <p>Doctor</p>
+    {% elif session["role"] == "nurse" %}
+        <p>Nurse</p>
+    {% else %}
+        <div class="container mt-4">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="text-center">Medicine Inventory</h2>
+                <div>
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addMedicineModal">Add Medicine</button>
+                    <a href="/inventory_manager/export_csv" class="btn btn-primary">Export to CSV</a>
+                </div>
+                <div class="mt-3">
+                    <input type="text" id="searchBar" class="form-control" onkeyup="searchMedicine()" placeholder="Search for medicines...">
+                </div>
+            </div>
+
+            <table class="table table-striped table-bordered mt-3" id="medicineTable">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Quantity</th>
+                        <th>Threshold</th>
+                        <th>Units</th>
+                        <th>Expiry Date</th>
+                        <th>Last Update</th>
+                        <th>Cost/Unit</th>
+                        <th>Status</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if medicines != "null" %}
+                        {% for medicine in medicines %}
+                        <tr>
+                            <td><a href="/inventory_manager/fetch_usage_history?name={{ medicine.name }}"> {{ medicine.name }} </a></td>
+                            <td>{{ medicine.type }}</td>
+                            <td>{{ medicine.quantity }}</td>
+                            <td>{{ medicine.threshold }}</td>
+                            <td>{{ medicine.units }}</td>
+                            <td>{{ medicine.expiry_date }}</td>
+                            <td>{{ medicine.last_update }}</td>
+                            <td>{{ medicine.cost_per_unit }}</td>
+                            <td>
+                                {% if medicine.quantity <= medicine.threshold %}
+                                    <span class="badge bg-danger">Low Stock</span>
+                                {% elif medicine.quantity == 0 %}
+                                    <span class="badge bg-danger">Not Available</span>
+                                {% else %}
+                                    <span class="badge bg-success">Available</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="/inventory_manager/delete?name={{ medicine.name }}">
+                                    <img src="{{ url_for('static', filename='img/delete.png') }}" alt="delete medicine">
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr> 
+                            <td colspan="10" class="text-center">No medicines found</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+
+    <!-- Modal for Adding Medicine -->
+    <div class="modal fade" id="addMedicineModal" tabindex="-1" aria-labelledby="addMedicineModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addMedicineModalLabel">Add New Medicine</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <!-- Traditional Form Submission -->
+                <form action="/inventory_manager/add_medicine" method="POST">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="medicineName" class="form-label">Medicine Name</label>
+                            <input type="text" class="form-control" id="medicineName" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="type" class="form-label">Type</label>
+                            <select class="form-control" id="type" name="type" required>
+                                <option value="" disabled selected>Select Medicine Type</option>
+                                <option value="Tablet">Tablet</option>
+                                <option value="Capsule">Capsule</option>
+                                <option value="Syrup">Syrup</option>
+                                <option value="Injection">Injection</option>
+                                <option value="Ointment">Ointment</option>
+                                <option value="Drops">Drops</option>
+                                <option value="Inhaler">Inhaler</option>
+                                <option value="Powder">Powder</option>
+                                <option value="Saline">Saline</option>
+                                <option value="Medical Instrument">Medical Instrument</option>
+                                <option value="Suppository">Suppository</option>
+                                <option value="Bandages & Dressings">Bandages & Dressings</option>
+                                <option value="Disinfectant">Disinfectant</option>
+                                <option value="Vaccine">Vaccine</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="quantity" class="form-label">Quantity</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="threshold" class="form-label">Threshold</label>
+                            <input type="number" class="form-control" id="threshold" name="threshold" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="units" class="form-label">Units</label>
+                            <input type="text" class="form-control" id="units" name="units" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="expiry_date" class="form-label">Expiry Date</label>
+                            <input type="date" class="form-control" id="expiry_date" name="expiry_date" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cost_per_unit" class="form-label">Cost Per Unit</label>
+                            <input type="number" class="form-control" id="cost_per_unit" name="cost_per_unit" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Add Medicine</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- adding graphs for analysis -->
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h4 class="text-center">Medicine Type Composition</h4>
+            <canvas id="medicineTypeChart"></canvas>
+        </div>
+        <div class="col-md-6">
+            <h4 class="text-center">Expiry Date Analysis</h4>
+            <canvas id="expiryDateChart"></canvas>
+        </div>
+    </div>
+    
+    <script>
+        function searchMedicine() {
+            let input = document.getElementById("searchBar").value.toLowerCase();
+            let table = document.getElementById("medicineTable");
+            let rows = table.getElementsByTagName("tr");
+
+
+            for (let i = 1; i < rows.length; i++) {
+                let nameCell = rows[i].getElementsByTagName("td")[0];
+                if (nameCell) {
+                    let name = nameCell.textContent || nameCell.innerText;
+                    rows[i].style.display = name.toLowerCase().includes(input) ? "" : "none";
+                }
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const medicineData = JSON.parse('{{ medicines|tojson|safe }}');  // Get medicines from Flask
+            console.log(medicineData);
+            let typeCounts = {};
+            let expiryData = [];
+
+            medicineData.forEach(med => {
+                // Count medicine types
+                typeCounts[med.type] = (typeCounts[med.type] || 0) + 1;
+                
+                // Prepare expiry date data
+                expiryData.push({
+                    name: med.name,
+                    expiry: new Date(med.expiry_date)
+                });
+            });
+
+            // Sorting expiryData by closest expiry first
+            expiryData.sort((a, b) => a.expiry - b.expiry);
+            
+            // Extract data for charts
+            let typeLabels = Object.keys(typeCounts);
+            let typeValues = Object.values(typeCounts);
+            
+            let expiryLabels = expiryData.slice(0, 5).map(m => m.name);  // Top 5 medicines expiring first
+            let expiryValues = expiryData.slice(0, 5).map(m => Math.round((m.expiry - new Date()) / (1000 * 60 * 60 * 24)));  // Days left
+
+            // Medicine Type Composition Pie Chart
+            new Chart(document.getElementById("medicineTypeChart"), {
+                type: "pie",
+                data: {
+                    labels: typeLabels,
+                    datasets: [{
+                        label: "Count",
+                        data: typeValues,
+                        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4CAF50", "#9966FF", "#E57373", "#FF8A65"]
+                    }]
+                }
+            });
+
+            // Expiry Date Bar Chart
+            new Chart(document.getElementById("expiryDateChart"), {
+                type: "bar",
+                data: {
+                    labels: expiryLabels,
+                    datasets: [{
+                        label: "Days to Expiry",
+                        data: expiryValues,
+                        backgroundColor: "#FF5733"
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
