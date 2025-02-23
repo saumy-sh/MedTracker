@@ -8,7 +8,7 @@
 /* Body and Background */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f1f1f1;
+    background-color: #00A2E8;
     color: #333;
     display: flex;
     justify-content: center;
@@ -18,36 +18,11 @@ body {
     background-size: cover;
 }
 
-/* Flash Messages */
-.flash-message {
-    position: absolute;
-    top: 10px;
-    width: 100%;
-    z-index: 999;
-    padding: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
 
-.alert {
-    width: 100%;
-    margin: 0;
-    border-radius: 5px;
-    font-size: 1.1rem;
-}
-
-.alert-danger {
-    background-color: #f8d7da;
-    color: #721c24;
-}
-
-.alert-success {
-    background-color: #d4edda;
-    color: #155724;
-}
 
 /* Login Page */
 .login-page {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color:white;
     padding: 40px 50px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
