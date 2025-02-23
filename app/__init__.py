@@ -103,7 +103,7 @@ def create_app():
     load_dotenv()
 
     # Replace with your actual credentials
-    app.config["MONGO_URI"] = os.getenv("DATABASE_URI")
+    app.config["MONGO_URI"] = os.getenv("MONGO_URL")
     app.config["SECRET_KEY"] = os.urandom(24)
 
     # Mailtrap configuration
