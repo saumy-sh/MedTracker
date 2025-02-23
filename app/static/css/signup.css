@@ -7,7 +7,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(to right, #6a11cb, #2575fc);
+    background: linear-gradient(to right,#00A2E8, #2575fc);
     color: #fff;
 }
 
@@ -22,13 +22,13 @@ body {
 
 /* Signup Page Container */
 .signup-page {
-    background: rgba(255, 255, 255, 0.1);
+    background: white;
     padding: 30px;
     border-radius: 15px;
     backdrop-filter: blur(10px);
     text-align: center;
     width: 350px;
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+    
 }
 
 /* Logo and Title */
@@ -63,7 +63,7 @@ input::placeholder {
 button {
     width: 100%;
     padding: 10px;
-    background: #2575fc;
+    background: #00A2E8;
     border: none;
     border-radius: 5px;
     color: white;
@@ -73,7 +73,7 @@ button {
 }
 
 button:hover {
-    background: #6a11cb;
+    background: #2575fc;
 }
 
 /* Flash Messages */
