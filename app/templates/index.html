@@ -49,82 +49,84 @@
             <section class="hero-section">
                 <img src="{{ url_for('static', filename='img/icon.png') }}" alt="Track It logo" style="width: 100px; height: 100px;">
                 <h1><span>MedTracker</span></h1>
-                <p>A hassle free way of tracking prices</p>
+                <p>Your personal medicine notifier</p>
             </section>
             
         </div>
     </div>
     <div class="problem-section">
-        <h2>Tired of manually tracking flight price?</h2>
+        <h2>Tired of manually tracking your medicine inventory?</h2>
         <p>
-            Tracking flight prices can be a hassle, with fluctuating costs and confusing interfaces. 
-            Our platform simplifies the process, providing real-time price tracking, notifications, 
-            and easy-to-use features to ensure you never miss the best deals.
+            Managing your medicine inventory can be overwhelming, especially with fluctuating stock levels and expiration dates. 
+            Our platform simplifies the process, providing real-time tracking, expiry analysis, and notifications to ensure your 
+            medicine stock is always up-to-date and ready when you need it.
         </p>
         <div class="comparison-section">
             <div class="comparison-card without">
-                <h3>Booking without Track It</h3>
+                <h3>Managing Inventory without MedTracker</h3>
                 <ul>
-                    <li>❌ Manually track flight prices</li>
-                    <li>❌ Miss out on the best deals</li>
-                    <li>❌ Spend hours searching different websites</li>
-                    <li>❌ No notifications for price drops</li>
-                    <li>❌ Risk booking at higher prices</li>
+                    <li>❌ Manually track medicine stock and expiry dates</li>
+                    <li>❌ Risk running out of critical medicines</li>
+                    <li>❌ Forget to reorder medicines in time</li>
+                    <li>❌ No notifications for low stock or approaching expiry</li>
+                    <li>❌ Difficulty in analyzing medicine usage</li>
                 </ul>
             </div>
             <div class="comparison-card with">
-                <h3>Booking with Track It</h3>
+                <h3>Managing Inventory with MedTracker</h3>
                 <ul>
-                    <li>✅ Automatic flight price tracking</li>
-                    <li>✅ Get the best deals in real time</li>
-                    <li>✅ Save time with a single platform</li>
-                    <li>✅ Email notifications for price updates</li>
-                    <li>✅ Never overpay for flights again</li>
+                    <li>✅ Automatic tracking of medicine stock and expiry dates</li>
+                    <li>✅ Receive timely notifications when stock is low or expiry is near</li>
+                    <li>✅ Reorder medicines in time to avoid shortages</li>
+                    <li>✅ Email alerts for medicine expiry and low quantity</li>
+                    <li>✅ Analyze medicine usage and make data-driven decisions</li>
                 </ul>
             </div>
         </div>
-        
     </div>
+    
+        
 
     <div class="background">
-        <h2>Why choose Us?</h2>
+        <h2>Why use MedTracker?</h2>
         <div class="info-section">
             
             <div class="info-item">
                 <div class="toggle-header">
-                    <label for="specific-flight">1. Track Specific Flight</label>
-                    <button class="toggle-button" name="specific-flight" value="specific-flight" onclick="toggleSection(this)">+</button>
+                    <label for="track-expiry">1. Track Medicine Expiry</label>
+                    <button class="toggle-button" name="track-expiry" value="track-expiry" onclick="toggleSection(this)">+</button>
                 </div>
                 
-                <div class="info-content" id="specific-flight">
-                    <p>Stay updated on the status of any specific flight. Enter the flight number to get real-time updates, including delays, gate changes, and arrival times.</p>
+                <div class="info-content" id="track-expiry">
+                    <p>Stay on top of medicine expiry dates. Track when each medicine is about to expire and avoid using outdated products with timely notifications.</p>
                 </div>
             </div>
             <hr>
             <div class="info-item">
                 <div class="toggle-header">
-                    <label for="cheapest-flight">2. Track Cheapest Flight</label>
-                    <button class="toggle-button" name="cheapest-flight" value="cheapest-flight" onclick="toggleSection(this)">+</button>
+                    <label for="inventory-management">2. Manage Medicine Inventory</label>
+                    <button class="toggle-button" name="inventory-management" value="inventory-management" onclick="toggleSection(this)">+</button>
                 </div>
                 
-                <div class="info-content" id="cheapest-flight">
-                    <p>Find the most affordable flights to your destination. Use advanced filters to compare prices and get suggestions for the best time to book.</p>
+                <div class="info-content" id="inventory-management">
+                    <p>Keep a record of all your medicines, including quantities and usage. The platform helps you track stock levels and makes reordering easy.</p>
                 </div>
             </div>
             <hr>
             <div class="info-item">
                 <div class="toggle-header">
-                    <label for="notifier">3. Get Mail Notifications</label>
-                    <button class="toggle-button" name="notifier" value="notifier" onclick="toggleSection(this)">+</button>
+                    <label for="notifications">3. Get Mail Notifications</label>
+                    <button class="toggle-button" name="notifications" value="notifications" onclick="toggleSection(this)">+</button>
                 </div>
                 
-                <div class="info-content" id="notifier">
-                    <p>Never miss an update! Subscribe to email alerts for flight price drops, booking confirmations, or changes to your selected flights.</p>
+                <div class="info-content" id="notifications">
+                    <p>Never run out of essential medicines or forget about expiry dates! Subscribe to email alerts for low stock or approaching expiry notifications.</p>
                 </div>
             </div>
-
+    
         </div>
     </div>
+    
 
 
 
@@ -149,120 +151,130 @@
                 <div class="faq-questions">
                     <div class="info-item">
                         <div class="toggle-header">
-                            <label for="about">What is this site about?</label>
+                            <label for="about">What is MedTracker?</label>
                             <button class="toggle-button" name="about" value="about" onclick="toggleSection(this)">+</button>
                         </div>
                         
                         <div class="info-content" id="about">
-                            <p>This site helps you track flight prices and sends notifications about price drops.</p>
+                            <p>MedTracker helps you manage your medicine inventory, track expiry dates, and get notified when stock is low or medicines are about to expire.</p>
                         </div>
                     </div>
                     <hr>
                     <div class="info-item">
                         <div class="toggle-header">
-                            <label for="work">How does the price tracking work?</label>
-                            <button class="toggle-button" name="work" value="work" onclick="toggleSection(this)">+</button>
+                            <label for="how-it-works">How does MedTracker work?</label>
+                            <button class="toggle-button" name="how-it-works" value="how-it-works" onclick="toggleSection(this)">+</button>
                         </div>
                         
-                        <div class="info-content" id="work">
-                            <p>You enter your desired route and travel dates, and we monitor the prices for you.</p>
+                        <div class="info-content" id="how-it-works">
+                            <p>You add your medicines to the platform, and we track their stock levels and expiry dates. We'll notify you when it's time to reorder or when a medicine is about to expire.</p>
                         </div>
                     </div>
                     <hr>
                     <div class="info-item">
                         <div class="toggle-header">
-                            <label for="is-it-free">Is this service free?</label>
+                            <label for="notifications">How do the notifications work?</label>
+                            <button class="toggle-button" name="notifications" value="notifications" onclick="toggleSection(this)">+</button>
+                        </div>
+                        
+                        <div class="info-content" id="notifications">
+                            <p>You'll receive email notifications when your medicines are about to expire or when stock levels are low, ensuring you never run out of critical medications.</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="info-item">
+                        <div class="toggle-header">
+                            <label for="is-it-free">Is MedTracker free to use?</label>
                             <button class="toggle-button" name="is-it-free" value="is-it-free" onclick="toggleSection(this)">+</button>
                         </div>
                         
                         <div class="info-content" id="is-it-free">
-                            <p>Yes.</p>
+                            <p>Yes, MedTracker is free to use for basic features. Premium features may be available in the future.</p>
                         </div>
                     </div>
-                    <hr> 
+                    <hr>
                     <div class="info-item">
                         <div class="toggle-header">
-                            <label for="how-often">How often are flight prices updated?</label>
+                            <label for="multiple-medicines">Can I track multiple medicines at once?</label>
+                            <button class="toggle-button" name="multiple-medicines" value="multiple-medicines" onclick="toggleSection(this)">+</button>
+                        </div>
+                        
+                        <div class="info-content" id="multiple-medicines">
+                            <p>Yes, you can add and track multiple medicines at once, and we'll keep you updated on each item's expiry date and stock level.</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="info-item">
+                        <div class="toggle-header">
+                            <label for="how-often">How often are the expiry dates updated?</label>
                             <button class="toggle-button" name="how-often" value="how-often" onclick="toggleSection(this)">+</button>
                         </div>
                         
                         <div class="info-content" id="how-often">
-                            <p>We update flight prices daily at a fixed time.</p>
+                            <p>Expiry dates are updated whenever a medicine is added, and we send you reminders based on the expiry date you input for each product.</p>
                         </div>
                     </div>
                     <hr>
                     <div class="info-item">
                         <div class="toggle-header">
-                            <label for="multiple-flights">Can I track multiple flights at once?</label>
-                            <button class="toggle-button" name="multiple-flights" value="multiple-flights" onclick="toggleSection(this)">+</button>
+                            <label for="track-quantity">How does MedTracker track medicine quantities?</label>
+                            <button class="toggle-button" name="track-quantity" value="track-quantity" onclick="toggleSection(this)">+</button>
                         </div>
                         
-                        <div class="info-content" id="multiple-flights">
-                            <p>Yes, you can track multiple routes simultaneously.</p>
+                        <div class="info-content" id="track-quantity">
+                            <p>You can input the quantity of each medicine you have, and MedTracker will notify you when the stock is low or needs replenishing.</p>
                         </div>
                     </div>
                     <hr>
                     <div class="info-item">
                         <div class="toggle-header">
-                            <label for="how-will-i-know">How will I know if the price changes?</label>
-                            <button class="toggle-button" name="how-will-i-know" value="how-will-i-know" onclick="toggleSection(this)">+</button>
+                            <label for="feedback">What if I encounter an issue with the site?</label>
+                            <button class="toggle-button" name="feedback" value="feedback" onclick="toggleSection(this)">+</button>
                         </div>
                         
-                        <div class="info-content" id="how-will-i-know">
-                            <p>You'll receive an email notification whenever there's a significant price change.</p>
+                        <div class="info-content" id="feedback">
+                            <p>If you encounter any issues, please contact our support team through the Feedback section on our site.</p>
                         </div>
                     </div>
-                    <hr>
-                    <div class="info-item">
-                        <div class="toggle-header">
-                            <label for="need-account">Do I need to create an account?</label>
-                            <button class="toggle-button" name="need-account" value="need-account" onclick="toggleSection(this)">+</button>
-                        </div>
-                        
-                        <div class="info-content" id="need-account">
-                            <p>Yes, creating an account helps us save your preferences and notify you.</p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="info-item">
-                        <div class="toggle-header">
-                            <label for="book-directly">Can I book flights directly on this site?</label>
-                            <button class="toggle-button" name="book-directly" value="book-directly" onclick="toggleSection(this)">+</button>
-                        </div>
-                        
-                        <div class="info-content" id="book-directly">
-                            <p>Not yet. We currently redirect you to trusted booking platforms.</p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="info-item">
-                        <div class="toggle-header">
-                            <label for="track-international">Can I track international flights?</label>
-                            <button class="toggle-button" name="track-international" value="track-international" onclick="toggleSection(this)">+</button>
-                        </div>
-                        
-                        <div class="info-content" id="track-international">
-                            <p>Yes, our service supports domestic and international flights.</p>
-                        </div>
-                    </div>
-                    <hr> 
-                    <div class="info-item">
-                        <div class="toggle-header">
-                            <label for="give-feedback">What if I encounter an issue with the site?</label>
-                            <button class="toggle-button" name="give-feedback" value="give-feedback" onclick="toggleSection(this)">+</button>
-                        </div>
-                        
-                        <div class="info-content" id="give-feedback">
-                            <p>Please contact our support team via the Feedback section.</p>
-                        </div>
-                    </div>  
-                                    
-
                 </div>
             </div>
         </div>
-        
     </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <h3>MedTracker</h3>
+                <p>Your go-to platform for managing medicine inventory, expiry tracking, and timely notifications.</p>
+            </div>
+            <div class="footer-middle">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                <h4>Connect with Us</h4>
+                <div class="social-links">
+                    <a href="https://x.com/Saumysha_1729" target="_blank" title="Twitter">
+                        <img src="{{ url_for('static', filename='img/twitter.png') }}" alt="Twitter">
+                    </a>
+                    <a href="https://www.linkedin.com/in/saumy-sharan-72008426a" target="_blank" title="LinkedIn">
+                        <img src="{{ url_for('static', filename='img/linkedin.png') }}" alt="LinkedIn">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 MedTracker. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    
     
     
     
