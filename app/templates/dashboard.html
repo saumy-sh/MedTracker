@@ -80,7 +80,7 @@
                             <td>{{ medicine.cost_per_unit }}</td>
                             <td>
                                 {% if medicine.quantity <= medicine.threshold %}
-                                    <span class="badge bg-danger">Low Stock</span>
+                                    <span class="badge bg-warning">Low Stock</span>
                                 {% elif medicine.quantity == 0 %}
                                     <span class="badge bg-danger">Not Available</span>
                                 {% else %}
@@ -173,16 +173,20 @@
     </div>
 
     <!-- adding graphs for analysis -->
-    <div class="row mt-5">
-        <div class="col-md-6">
+    
+        <div class="mt-4">
             <h4 class="text-center">Medicine Type Composition</h4>
             <canvas id="medicineTypeChart"></canvas>
         </div>
-        <div class="col-md-6">
+        <div class="mt-4">
             <h4 class="text-center">Expiry Date Analysis</h4>
             <canvas id="expiryDateChart"></canvas>
         </div>
-    </div>
+        <div class="mt-4">
+            <h4 class="text-center">Medicine Price Distribution</h4>
+            <canvas id="pricePieChart"></canvas>
+        </div>
+    
     
     <script>
         function searchMedicine() {
@@ -204,6 +208,24 @@
             console.log(medicineData);
             let typeCounts = {};
             let expiryData = [];
+            // price chart
+            new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: medicineData.names,
+                        datasets: [{
+                            data: medicineData.costs,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.7)',
+                                'rgba(54, 162, 235, 0.7)',
+                                'rgba(255, 206, 86, 0.7)',
+                                'rgba(75, 192, 192, 0.7)',
+                                'rgba(153, 102, 255, 0.7)',
+                                'rgba(255, 159, 64, 0.7)'
+                            ]
+                        }]
+                    }
+                });
 
             medicineData.forEach(med => {
                 // Count medicine types
@@ -238,6 +260,7 @@
                     }]
                 }
             });
+            
 
             // Expiry Date Bar Chart
             new Chart(document.getElementById("expiryDateChart"), {
